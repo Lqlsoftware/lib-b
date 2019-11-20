@@ -30,7 +30,7 @@ Or if you have some matrix file which is split by white space:
 Import this package:
 
 ```python
-    import Factorization.factorization as fc
+import Factorization.factorization as fc
 ```
 
 Apply methods on matrix and fetch the result:
