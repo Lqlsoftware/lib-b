@@ -36,7 +36,12 @@ def PrintMatrix(M, title=""):
         print()
 
 def RoundMatrix(M, digits=32):
+    precision = 10 ** (-digits)
     for i in range(len(M)):
         for j in range(len(M[i])):
-            M[i][j] = round(M[i][j], digits)
+            e = round(M[i][j], digits)
+            if abs(e) < precision:
+                M[i][j] = 0.
+            else:
+                M[i][j] = e
     return M

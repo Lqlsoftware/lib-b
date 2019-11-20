@@ -16,13 +16,13 @@ A implement of factorization support by multiple methods and data types.
 Clone this repo and open its dir, then run:
 
 ```sh
-# python3 example.py
+# python3 example.py lu|cs|ms|h|g
 ```
 
 Or if you have some matrix file which is split by white space:
 
 ```sh
-# python3 example.py matrix
+# python3 example.py -f matrix lu|cs|ms|h|g
 ```
 
 ## Usage
