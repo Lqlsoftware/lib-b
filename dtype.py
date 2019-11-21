@@ -16,6 +16,7 @@ class Fraction():
             nd_gcd = self.gcd(n, d)
             n = n // nd_gcd
             d = d // nd_gcd
+            # we do not store more than 64 bits, transform to float
             if n.bit_length() > 32 and d.bit_length() > 32:
                 self.numerator = abs(numerator) / abs(denominator)
                 self.denominator = 1
