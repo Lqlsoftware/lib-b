@@ -115,7 +115,7 @@ def ClassicalSchmidtDecomposition(A, eType=float, digits=12):
         # vii <- ||ui||
         u_norm_2 = eType(0)
         for j in range(size):
-            u_norm_2 += u[j] ** 2
+            u_norm_2 += u[j] * u[j]
         v_ii = u_norm_2 ** 0.5
         R[i][i] = v_ii
 
@@ -164,7 +164,7 @@ def ModifiedSchmidtDecomposition(A, eType=float, digits=12):
         # vii <- ||ui||
         u_norm_2 = eType(0)
         for j in range(size):
-            u_norm_2 += U[i][j] ** 2
+            u_norm_2 += U[i][j] * U[i][j]
         v_ii = u_norm_2 ** 0.5
         R[i][i] = v_ii
 
@@ -223,31 +223,31 @@ def HouseholderReduction(A, eType=float, digits=12):
         # u1 <- x1 - ||ui||e1
         x_norm_2 = eType(0)
         for j in range(length):
-            x_norm_2 += u[j] ** 2
+            x_norm_2 += u[j] * u[j]
         x_norm = x_norm_2 ** 0.5
         u[0] -= x_norm
 
-        # Ri = I - 2/ui(ui*) * (ui*)ui
+        # Pi = I - 2/ui(ui*) * (ui*)ui
         # define P as identity matrix, P = I.
         P = [[eType(0) if k != j else eType(1) for j in range(length)] for k in range(length)]
         # c = 2/ui(ui*)
         u_norm_2 = eType(0)
         for j in range(length):
-            u_norm_2 += u[j] ** 2
+            u_norm_2 += u[j] * u[j]
         c = eType(2) / u_norm_2
-        # Ri = Ri - c * (ui*)ui
+        # Pi = Pi - c * (ui*)ui
         for j in range(length):
             for k in range(length):
                 P[j][k] -= c * u[j] * u[k]
-
+        PrintMatrix(P, "P")
         # TODO Parallel {R = Ri' * Ai} & {Q = Ri' * Q_i}
-        # R = Ri' * Ai
+        # R = Ri' * R
         #  Update the right bottom of R
         #  R = | R1  R2 |   Ri' = | 1  0  |  Ai = | R4 |
         #      | 0   R4 |         | 0  Ri |
         #
-        #  Ri' * Q = | R1  R2   |
-        #            | 0   RiQ4 |
+        #  Ri' * R = | R1  R2   |
+        #            | 0   RiR4 |
         #
         A_i = [[R[k][j] for j in range(i, size)] for k in range(i, size)]
         # Ri * R_i
@@ -256,7 +256,7 @@ def HouseholderReduction(A, eType=float, digits=12):
                 r, c = j + i, k + i
                 R[r][c] = eType(0)
                 for l in range(length):
-                    R[r][c] += + P[j][l] * A_i[l][k]
+                    R[r][c] += P[j][l] * A_i[l][k]
 
         # Q = Ri' * Q_i
         #  Update the left bottom & the right bottom of Q
@@ -272,6 +272,7 @@ def HouseholderReduction(A, eType=float, digits=12):
                 Q[j + i][k] = eType(0)
                 for l in range(length):
                     Q[j + i][k] += P[j][l] * Q_i[l][k]
+
     # Q = Q.transpose (Q is PnPn-1...P2P1)
     for j in range(size):
         for k in range(j + 1, size):
@@ -314,7 +315,7 @@ def GivensReduction(A, eType=float, digits=12):
             # annihilate A_ji (i < j)
             # define P_ij as identity matrix
             P_ij = [[eType(1) if i == j else eType(0) for j in range(size)] for i in range(size)]
-            cs_root_square = (R[i][i] ** 2 + R[j][i] ** 2) ** 0.5
+            cs_root_square = (R[i][i] * R[i][i] + R[j][i] * R[j][i]) ** 0.5
             c = R[i][i] / cs_root_square
             s = R[j][i] / cs_root_square
             # update P (i,i) = c (i,j) = s (j,i) = -s (j,j) = c

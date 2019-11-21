@@ -24,15 +24,17 @@ def PrintMatrix(M, title=""):
     print(title)
     if type(M[0][0]) == float:
         for i in range(len(M)):
+            print("|", end='')
             for j in range(len(M[i])):
                 print("%10.6f" % M[i][j], end=', ')
-            print()
+            print("\b\b  |")
         print()
     else:
         for i in range(len(M)):
+            print("|", end='')
             for j in range(len(M[i])):
                 print("%7.6s" % M[i][j], end=', ')
-            print()
+            print("\b\b  |")
         print()
 
 def RoundMatrix(M, digits=32):
