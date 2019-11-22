@@ -1,8 +1,4 @@
-import math
-
 from exception import SigularMatrixError, NotSquareMatrixError
-
-from utils import PrintMatrix
 from utils import RoundMatrix
 
 
@@ -239,7 +235,6 @@ def HouseholderReduction(A, eType=float, digits=12):
         for j in range(length):
             for k in range(length):
                 P[j][k] -= c * u[j] * u[k]
-        PrintMatrix(P, "P")
         # TODO Parallel {R = Ri' * Ai} & {Q = Ri' * Q_i}
         # R = Ri' * R
         #  Update the right bottom of R
