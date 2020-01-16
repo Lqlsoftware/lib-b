@@ -1,6 +1,6 @@
-# Factorizations Utils
+# LIB-B
 
-A implement of factorization support by multiple methods and data types.
+A library contains implements of factorization supporting multiple methods and data types.
 
 - LU Factorization
 - Schmidt Decomposition (classical/modified)
