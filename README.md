@@ -27,7 +27,13 @@ Or if you have some matrix file which is split by white space:
 
 ## Usage
 
-Import this package:
+Install package:
+
+```sh
+pip install lib-b
+```
+
+Import it:
 
 ```python
 import libb.factorization as lbb
