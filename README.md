@@ -30,15 +30,15 @@ Or if you have some matrix file which is split by white space:
 Import this package:
 
 ```python
-import Factorization.factorization as fc
+import libb.factorization as lbb
 ```
 
 Apply methods on matrix and fetch the result:
 
 ```python
-P, L, U = fc.LUFactorization(A=A_matrix)
-Q, R = fc.ClassicalSchmidtDecomposition(A=A_matrix)
-Q, R = fc.ModifiedSchmidtDecomposition(A=A_matrix)
-Q, R = fc.HouseholderReduction(A=A_matrix)
-Q, R = fc.GivensReduction(A=A_matrix)
+P, L, U = lbb.LUFactorization(A=A_matrix)
+Q, R = lbb.ClassicalSchmidtDecomposition(A=A_matrix)
+Q, R = lbb.ModifiedSchmidtDecomposition(A=A_matrix)
+Q, R = lbb.HouseholderReduction(A=A_matrix)
+Q, R = lbb.GivensReduction(A=A_matrix)
 ```

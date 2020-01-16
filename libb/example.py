@@ -1,10 +1,10 @@
 import sys
 import argparse
 
-import factorization as fc
+import libb.factorization as fc
 
-from dtype import Fraction
-from utils import LoadMatrix, PrintMatrix
+from libb.dtype import Fraction
+from libb.utils import LoadMatrix, PrintMatrix
 
 def getArguments(args=sys.argv[1:]):
     parser = argparse.ArgumentParser(description="Matrix Decomposition Utils.")
