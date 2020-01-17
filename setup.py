@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="lib-b", # Replace with your own username
-    version="1.0.2",
+    version="1.0.3",
     author="Robin Lu",
     author_email="robin@lqlsoftware.cn",
     description="A library contains implements of factorization supporting multiple methods and data types",
@@ -18,5 +18,11 @@ setuptools.setup(
         "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
         "Operating System :: OS Independent",
     ],
-    python_requires='>=3.6',
+    python_requires='>=3.4.0',
+    entry_points={
+        'console_scripts': [
+            'libb = main:main'
+        ]
+    },
+    scripts=['libb/main.py'],
 )

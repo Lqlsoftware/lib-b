@@ -9,42 +9,45 @@ A library contains implements of factorization supporting multiple methods and d
 
 ## Environment
 
-    Python 3.7.4 or higher
+    Python 3.4 or higher
 
-## Example
-
-Clone this repo and open its dir, then run:
-
-```sh
-# python3 example.py lu|cs|ms|h|g
-```
-
-Or if you have some matrix file which is split by white space:
-
-```sh
-# python3 example.py -f matrix lu|cs|ms|h|g
-```
-
-## Usage
-
-Install package:
+## Install
 
 ```sh
 pip install lib-b
 ```
 
+## Usage
+
+```sh
+# libb -h
+```
+
+Apply all decomposition on the matrix you input:
+
+```sh
+# libb lucsmshg
+```
+
+## Usage in script
+
 Import it:
 
 ```python
-import libb.factorization as lbb
+import libb
 ```
 
-Apply methods on matrix and fetch the result:
+Load matrix(from stdin or opened file):
+```python
+A_matrix, row_num, col_num = libb.LoadMatrix(src=stdin)
+```
+
+Apply methods on matrix (any struct that supports index operator `[]`) and fetch the result:
 
 ```python
-P, L, U = lbb.LUFactorization(A=A_matrix)
-Q, R = lbb.ClassicalSchmidtDecomposition(A=A_matrix)
-Q, R = lbb.ModifiedSchmidtDecomposition(A=A_matrix)
-Q, R = lbb.HouseholderReduction(A=A_matrix)
-Q, R = lbb.GivensReduction(A=A_matrix)
+P, L, U = libb.LUFactorization(A=A_matrix)
+Q, R = libb.ClassicalSchmidtDecomposition(A=A_matrix)
+Q, R = libb.ModifiedSchmidtDecomposition(A=A_matrix)
+Q, R = libb.HouseholderReduction(A=A_matrix)
+Q, R = libb.GivensReduction(A=A_matrix)
 ```
